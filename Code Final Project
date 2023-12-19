@@ -1,0 +1,92 @@
+#include <stdio.h>
+// Kirk Omega
+
+// Declarations sa functions
+double metersToCentimeters(double meters);
+double centimetersToMeters(double centimeters);
+double inchesToCentimeters(double inches);
+double centimetersToInches(double centimeters);
+
+int main() {
+    double length;
+    char fromUnit, toUnit;
+    
+    // Header
+    printf("------------------------------Measurement Converter----------------------------------\n");
+
+    // First user input 
+    printf("\nEnter Measurement: ");
+    scanf("%lf", &length);
+
+    // User input for the units
+    printf("Enter the unit of the measurement: Meters(m) Centimeters(c) Inches(i): ");
+    scanf(" %c", &fromUnit);
+
+    printf("\nEnter the unit of measurement to convert to (Meters(m) Centimeters(c) Inches(i)): ");
+    scanf(" %c", &toUnit);
+
+    // Conversion in switch case
+    switch (fromUnit) {
+        case 'm':
+            switch (toUnit) {
+                case 'c':
+                    printf("%.2f meters is equal to %.2f centimeters.\n", length, metersToCentimeters(length));
+                    break;
+                case 'i':
+                    printf("%.2f meters is equal to %.2f inches.\n", length, centimetersToInches(metersToCentimeters(length)));
+                    break;
+                default:
+                    printf("Invalid conversion.\n");
+            }
+            break;
+        case 'c':
+            switch (toUnit) {
+                case 'm':
+                    printf("%.2f centimeters is equal to %.2f meters.\n", length, centimetersToMeters(length));
+                    break;
+                case 'i':
+                    printf("%.2f centimeters is equal to %.2f inches.\n", length, centimetersToInches(length));
+                    break;
+                default:
+                    printf("Invalid conversion.\n");
+            }
+            break;
+        case 'i':
+            switch (toUnit) {
+                case 'm':
+                    printf("%.2f inches is equal to %.2f meters.\n", length, centimetersToMeters(inchesToCentimeters(length)));
+                    break;
+                case 'c':
+                    printf("%.2f inches is equal to %.2f centimeters.\n", length, inchesToCentimeters(length));
+                    break;
+                default:
+                    printf("Invalid conversion.\n");
+            }
+            break;
+        default:
+            printf("Invalid unit entered.\n");
+            break;
+            // Switch cases determines the output based on the selected unit of the user
+    }
+
+    return 0;
+}
+
+// Function Definitions
+// Performs the actual conversion
+double metersToCentimeters(double meters) {
+    return meters * 100;
+}
+
+double centimetersToMeters(double centimeters) {
+    return centimeters / 100;
+}
+
+double inchesToCentimeters(double inches) {
+    return inches * 2.54;
+}
+
+double centimetersToInches(double centimeters) {
+    return centimeters / 2.54;
+}
+
